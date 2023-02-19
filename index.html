@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="wrapThisBody">
+        <section id="opponentChoice">
+            <select name="opponent">
+                <option value="AI" selected>AI</option>
+                <option value="friend">Friend</option>
+            </select>
+        </section>
+        <section id="middlePart">
+            <div id="markBtns">
+                <button id="xMarkBtn">X</button>
+                <button id="oMarkBtn">O</button>
+            </div>
+            <div id="wrapThisBoard">
+                <div id="gameBoard">
+                    <span class="cell nt nl" data-index="0"></span>
+                    <span class="cell nt" data-index="1"></span>
+                    <span class="cell nt nr" data-index="2"></span>
+                    <span class="cell nl" data-index="3"></span>
+                    <span class="cell" data-index="4"></span>
+                    <span class="cell nr" data-index="5"></span>
+                    <span class="cell nl nb" data-index="6"></span>
+                    <span class="cell nb" data-index="7"></span>
+                    <span class="cell nb nr" data-index="8"></span>
+                </div>
+            </div>
+            <div id="wrapThisPlayBtn">
+                <button id="playAgainBtn">Play again</button>
+            </div>
+        </section>
+        <section id="headLine">
+            <p>Tic -</p>
+            <p>Tac</p>
+            <p>- Toe</p>
+        </section>
+    </div>
+    <footer>
+        <p>© avshady 2023</p>
+    </footer>
+</body>
+
+</html>

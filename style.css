@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'MedievalSharp', cursive;
+}
+
+:root {
+    font-size: calc(60% + 0.8vmin);
+}
+
+body {
+    min-height: 100vh;
+    background-color: #fff;
+}
+
+select {
+    width: 8rem;
+    height: 2.5rem;
+    outline: none;
+    border: none;
+    background-color: #979dac;
+    font-size: 2rem;
+}
+
+#wrapThisBody {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap-reverse;
+    height: 96vh;
+}
+
+#opponentChoice {
+    margin: 2rem;
+}
+
+#middlePart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.2rem;
+}
+
+#markBtns {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+button {
+    border: none;
+    outline: none;
+    background-color: #979dac;
+    font-size: 2rem;
+}
+
+button:hover {
+    background-color: #5c677d;
+}
+
+button:active {
+    opacity: 0.8;
+}
+
+#markBtns>button {
+    width: 50%;
+    height: 3rem;
+}
+
+#wrapThisBoard {
+    position: sticky;
+    top: 1em;
+    width: 25vw;
+    height: 25vw;
+    min-width: 300px;
+    min-height: 300px;
+}
+
+#gameBoard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#wrapThisPlayBtn {
+    display: flex;
+    justify-content: center;
+}
+
+#wrapThisPlayBtn>button {
+    height: 3rem;
+    width: 100%;
+}
+
+#headLine {
+    color: #001233;
+    font-size: 4rem;
+    margin: 2rem;
+}
+
+.cell {
+    border: 0.3rem solid #001233;
+    border-radius: 12px;
+}
+
+.nt {
+    border-top: none;
+}
+
+.nr {
+    border-right: none;
+}
+
+.nb {
+    border-bottom: none;
+}
+
+.nl {
+    border-left: none;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    padding: 0.3rem;
+    color: #000;
+    font-size: 1.2rem;
+}
