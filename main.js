@@ -1,12 +1,15 @@
 "use strict";
 
+const xMarkBtn = document.getElementById("xMarkBtn");
+const oMarkBtn = document.getElementById("oMarkBtn");
+const cells = document.querySelectorAll(".cell");
+
 const Player = mark => {
     const getMark = () => mark;
     return { getMark };
 };
 
 const gameBoard = (() => {
-    const cells = document.querySelectorAll(".cell");
     let marks = ["", "", "", "", "", "", "", "", ""];
     const marksToArray = cell => {
         marks[cell] = gameController.getCurrentPlayer().getMark();
@@ -27,7 +30,6 @@ const gameBoard = (() => {
                 marksToArray(event.target.dataset.index);
                 displayController.renderMarks();
                 gameController.checkWinner(marks);
-                gameController.changePlayer();
             })
         });
         xMarkBtn.style.backgroundColor = "#001233";
@@ -36,11 +38,32 @@ const gameBoard = (() => {
 })();
 
 const displayController = (() => {
-    const cells = document.querySelectorAll(".cell");
+    const board = document.getElementById("gameBoard");
+    const winnerText = document.getElementById("winnerText");
+    const winnerMark = document.getElementById("winnerMark");
+    const outcomeText = document.getElementById("outcomeText");
     const renderMarks = () => {
         for (let i = 0; i < 9; i++) {
             cells[i].textContent = gameBoard.getCell(i);
         }
+    }
+    const displayWin = () => {
+        winnerMark.textContent = gameController.getCurrentPlayer().getMark();
+        outcomeText.textContent = "won!";
+        board.classList.add("fade-away");
+        winnerText.classList.add("fade-in");
+    }
+    const displayTie = () => {
+        winnerMark.textContent = "XO";
+        outcomeText.textContent = "tie!";
+        board.classList.add("fade-away");
+        winnerText.classList.add("fade-in");
+    }
+    const resetBoard = () => {
+        winnerMark.textContent = "";
+        outcomeText.textContent = "";
+        board.classList.remove("fade-away");
+        winnerText.classList.remove("fade-in");
     }
     const changeButtonColor = () => {
         if (gameController.getCurrentPlayer().getMark() === "X") {
@@ -51,7 +74,7 @@ const displayController = (() => {
             oMarkBtn.style.backgroundColor = "#33415c";
         }
     }
-    return { renderMarks, changeButtonColor };
+    return { renderMarks, changeButtonColor, displayWin, displayTie, resetBoard };
 })();
 
 const gameController = (() => {
@@ -59,6 +82,7 @@ const gameController = (() => {
     const playerOne = Player("X");
     const playerTwo = Player("O");
     let currentPlayer = playerOne;
+    let roundNumber = 1;
     const getCurrentPlayer = () => currentPlayer;
     const changePlayer = () => {
         currentPlayer = currentPlayer === playerOne ? playerTwo : playerOne;
@@ -79,27 +103,29 @@ const gameController = (() => {
                 marks[index] === currentPlayer.getMark()
             )
         );
+        if (winCombination === true) {
+            displayController.displayWin();
+        } else if (roundNumber === 9) {
+            displayController.displayTie();
+        }
+        else {
+            changePlayer();
+            roundNumber++;
+        }
     }
     playAgainBtn.addEventListener("click", () => {
         gameBoard.clearBoard();
         displayController.renderMarks();
-        displayController.changeButtonColor();
+        currentPlayer = playerOne;
+        xMarkBtn.style.backgroundColor = "#33415c";
+        oMarkBtn.style.backgroundColor = "#33415c";
+        xMarkBtn.style.backgroundColor = "#001233";
+        displayController.resetBoard();
+        roundNumber = 1;
     });
-    return { changePlayer, checkWinner, getCurrentPlayer };
+    return { checkWinner, getCurrentPlayer, getCurrentPlayer };
 })();
 
-const xMarkBtn = document.getElementById("xMarkBtn");
-const oMarkBtn = document.getElementById("oMarkBtn");
-/*
-xMarkBtn.addEventListener("click", () => {
-    xMarkBtn.style.backgroundColor = "#001233";
-    oMarkBtn.style.backgroundColor = "#33415c";
-});
-oMarkBtn.addEventListener("click", () => {
-    oMarkBtn.style.backgroundColor = "#001233";
-    xMarkBtn.style.backgroundColor = "#33415c";
-});
-*/
 document.onload = gameBoard.initBoard();
 
 

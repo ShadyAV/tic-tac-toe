@@ -76,10 +76,25 @@ button:active {
 }
 
 #wrapThisBoard {
+    position: relative;
     width: 23vw;
     height: 23vw;
     min-width: 300px;
     min-height: 300px;
+}
+
+#winnerText {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 25%;
+    text-align: center;
+    font-size: 5rem;
 }
 
 #gameBoard {
@@ -88,6 +103,37 @@ button:active {
     grid-template-rows: 1fr 1fr 1fr;
     width: 100%;
     height: 100%;
+}
+
+.fade-away {
+    animation: fadeAway 1s forwards;
+}
+
+@keyframes fadeAway {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        visibility: visible;
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
 }
 
 #wrapThisPlayBtn {
